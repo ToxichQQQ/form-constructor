@@ -1,25 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import {Constructor} from "./Constructor";
+import {Route, Routes} from "react-router-dom";
+import {HTML5Backend} from "react-dnd-html5-backend";
+import {DndProvider} from "react-dnd";
+import {Context} from './context/context'
+import {Area} from "./components/Area/Area";
+import {MainPage} from "./pages/MainPage";
+import React,{useState} from "react";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [config, setConfig] = useState([{}]);
+
+    return <DndProvider backend={HTML5Backend}>
+        <Context.Provider>
+            <Routes>
+                <Route path='/' element={<Constructor config={config} setConfig={setConfig}/>}/>
+                <Route path='/main' element={<MainPage setConfig={setConfig}/>}/>
+            </Routes>
+        </Context.Provider>
+    </DndProvider>
 }
 
 export default App;

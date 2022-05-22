@@ -1,0 +1,227 @@
+[
+  {
+    "type": "amount-field",
+    "config": {
+      "fieldName": "amountRequested",
+      "fieldLabel": "Amount Field",
+      "fullWidth": true,
+      "required": false,
+      "disabled": false,
+      "minValue": 500,
+      "maxValue": 10000000,
+      "errorMessage": "Minimum Amount $500"
+    }
+  },
+  {
+    "type": "text-field",
+    "config": {
+      "fieldName": "equipmentMakeAndModel",
+      "fieldLabel": "Text Field",
+      "helperText": "Helper Text",
+      "fullWidth": true,
+      "required": false,
+      "disabled": false
+    }
+  },
+  {
+    "type": "email-field",
+    "config": {
+      "fieldName": "email",
+      "fieldLabel": "Email",
+      "fullWidth": true,
+      "required": false,
+      "disabled": false,
+      "errorMessage": "Invalid email"
+    }
+  },
+  {
+    "type": "phone-field",
+    "config": {
+      "fieldName": "phone",
+      "fieldLabel": "Phone",
+      "fullWidth": true,
+      "required": false,
+      "disabled": false,
+      "errorMessage": "Invalid phone number"
+    }
+  },
+  {
+    "type": "select-field",
+    "config": {
+      "fieldName": "custom-select",
+      "fieldLabel": "Custom Select",
+      "helperText": "Helper Text",
+      "fullWidth": true,
+      "required": false,
+      "disabled": false,
+      "fieldOptions": [
+        {
+          "optionLabel": "Yes",
+          "optionValue": "yes"
+        },
+        {
+          "optionLabel": "No",
+          "optionValue": "no"
+        }
+      ]
+    }
+  },
+  {
+    "type": "state-field",
+    "config": {
+      "fieldName": "state",
+      "fieldLabel": "State",
+      "helperText": "Helper Text",
+      "fullWidth": true,
+      "required": false,
+      "disabled": false,
+      "fieldOptions": [
+        { "optionValue": "AK", "optionLabel": "AK" },
+        { "optionValue": "AL", "optionLabel": "AL" },
+        { "optionValue": "AR", "optionLabel": "AR" },
+        { "optionValue": "AZ", "optionLabel": "AZ" },
+        { "optionValue": "CA", "optionLabel": "CA" },
+        { "optionValue": "CO", "optionLabel": "CO" },
+        { "optionValue": "CT", "optionLabel": "CT" },
+        { "optionValue": "DC", "optionLabel": "DC" },
+        { "optionValue": "DE", "optionLabel": "DE" },
+        { "optionValue": "FL", "optionLabel": "FL" },
+        { "optionValue": "GA", "optionLabel": "GA" },
+        { "optionValue": "HI", "optionLabel": "HI" },
+        { "optionValue": "IA", "optionLabel": "IA" },
+        { "optionValue": "ID", "optionLabel": "ID" },
+        { "optionValue": "IL", "optionLabel": "IL" },
+        { "optionValue": "IN", "optionLabel": "IN" },
+        { "optionValue": "KS", "optionLabel": "KS" },
+        { "optionValue": "KY", "optionLabel": "KY" },
+        { "optionValue": "LA", "optionLabel": "LA" },
+        { "optionValue": "MA", "optionLabel": "MA" },
+        { "optionValue": "MD", "optionLabel": "MD" },
+        { "optionValue": "ME", "optionLabel": "ME" },
+        { "optionValue": "MI", "optionLabel": "MI" },
+        { "optionValue": "MN", "optionLabel": "MN" },
+        { "optionValue": "MO", "optionLabel": "MO" },
+        { "optionValue": "MS", "optionLabel": "MS" },
+        { "optionValue": "MT", "optionLabel": "MT" },
+        { "optionValue": "NC", "optionLabel": "NC" },
+        { "optionValue": "ND", "optionLabel": "ND" },
+        { "optionValue": "NE", "optionLabel": "NE" },
+        { "optionValue": "NH", "optionLabel": "NH" },
+        { "optionValue": "NJ", "optionLabel": "NJ" },
+        { "optionValue": "NM", "optionLabel": "NM" },
+        { "optionValue": "NV", "optionLabel": "NV" },
+        { "optionValue": "NY", "optionLabel": "NY" },
+        { "optionValue": "OH", "optionLabel": "OH" },
+        { "optionValue": "OK", "optionLabel": "OK" },
+        { "optionValue": "OR", "optionLabel": "OR" },
+        { "optionValue": "PA", "optionLabel": "PA" },
+        { "optionValue": "RI", "optionLabel": "RI" },
+        { "optionValue": "SC", "optionLabel": "SC" },
+        { "optionValue": "SD", "optionLabel": "SD" },
+        { "optionValue": "TN", "optionLabel": "TN" },
+        { "optionValue": "TX", "optionLabel": "TX" },
+        { "optionValue": "UT", "optionLabel": "UT" },
+        { "optionValue": "VA", "optionLabel": "VA" },
+        { "optionValue": "VT", "optionLabel": "VT" },
+        { "optionValue": "WA", "optionLabel": "WA" },
+        { "optionValue": "WI", "optionLabel": "WI" },
+        { "optionValue": "WV", "optionLabel": "WV" },
+        { "optionValue": "WY", "optionLabel": "WY" }
+      ]
+    }
+  },
+  {
+    "type": "postal-field",
+    "config": {
+      "fieldName": "postalCode",
+      "fieldLabel": "Postal Code",
+      "fullWidth": true,
+      "required": false,
+      "disabled": false,
+      "errorMessage": "Postal Code must be 5 characters"
+    }
+  },
+  {
+    "type": "tax-id-field",
+    "config": {
+      "fieldName": "taxID",
+      "fieldLabel": "Tax ID",
+      "fullWidth": true,
+      "required": false,
+      "disabled": false,
+      "errorMessage": "Tax ID must be 9 characters"
+    }
+  },
+  {
+    "type": "ssn-field",
+    "config": {
+      "fieldName": "ssn-field",
+      "fieldLabel": "Social Security Number",
+      "fullWidth": true,
+      "required": false,
+      "disabled": false,
+      "errorMessage": "Social Security Number +must be 9 characters"
+    }
+  },
+  {
+    "type": "date-field",
+    "config": {
+      "fieldName": "dateField",
+      "fieldLabel": "Date Field (MM/DD/YYYY)",
+      "fullWidth": true,
+      "required": false,
+      "disabled": false,
+      "errorMessage": "Minimum 11/30/2100",
+      "maxValue": "11/30/2100",
+      "minValue": "11/30/1970"
+    }
+  },
+  {
+    "type": "percent-field",
+    "config": {
+      "fieldName": "Percent Field",
+      "fieldLabel": "Percent Field",
+      "fullWidth": true,
+      "required": false,
+      "disabled": false,
+      "errorMessage": "Minimum value 25%",
+      "minValue": 25,
+      "maxValue": 100
+    }
+  },
+  {
+    "type": "sign-field",
+    "config": {
+      "fieldName": "sing-field",
+      "fieldLabel": "Sign Field",
+      "helperText": "Type your full name to sign",
+      "errorMessage": "Valid names must have more than 2 characters each",
+      "fullWidth": true,
+      "required": false,
+      "disabled": false
+    }
+  },
+  {
+    "type": "image-field",
+    "config": {
+      "fieldName": "image-field",
+      "fieldLabel": "Download file",
+      "required": false
+    }
+  },
+  {
+    "type": "text",
+    "config": {
+      "text": "Text",
+      "fontSize": "16px"
+    }
+  },
+  {
+    "type": "checkbox",
+    "config": {
+      "Label": "Checkbox",
+      "message": "",
+      "messageTitle": "Terms and Conditions"
+    }
+  }
+]
