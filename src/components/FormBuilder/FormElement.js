@@ -1,18 +1,25 @@
 import React from "react";
 import { useDrag, useDrop } from "react-dnd";
-import { ControlTypes } from "../untils/types";
+import { ControlTypes } from "../../untils/types";
 import { makeStyles } from "@material-ui/core/styles";
 import { Element } from "./Element";
 
 const useStyles = makeStyles(() => ({
   pageElement: {
     margin: 10,
-    border: props => (props.isOver ? "1px dashed black" : 0),
-    opacity: props => (props.isDragging ? 0.5 : 1),
+    border: (props) => (props.isOver ? "1px dashed black" : 0),
+    opacity: (props) => (props.isDragging ? 0.5 : 1),
   },
 }));
 
-export function FormElement({ item, index, onDrop, page, sectionIndex, setSelectedItem }) {
+export function FormElement({
+  item,
+  index,
+  onDrop,
+  page,
+  sectionIndex,
+  setSelectedItem,
+}) {
   const [{ isDragging }, drag] = useDrag(() => {
     return {
       type: ControlTypes.ELEMENT,
@@ -22,7 +29,7 @@ export function FormElement({ item, index, onDrop, page, sectionIndex, setSelect
         sectionIndex,
         page,
       },
-      collect: monitor => {
+      collect: (monitor) => {
         return {
           isDragging: monitor.isDragging(),
         };
@@ -33,12 +40,12 @@ export function FormElement({ item, index, onDrop, page, sectionIndex, setSelect
   const [{ isOver }, drop] = useDrop(() => {
     return {
       accept: ControlTypes.ELEMENT,
-      collect: monitor => {
+      collect: (monitor) => {
         return {
           isOver: monitor.isOver(),
         };
       },
-      canDrop: item => {
+      canDrop: (item) => {
         if (page !== item.page) {
           return false;
         }
@@ -51,7 +58,7 @@ export function FormElement({ item, index, onDrop, page, sectionIndex, setSelect
     };
   }, [item]);
 
-  const getRef = element => {
+  const getRef = (element) => {
     drag(element);
     drop(element);
   };
@@ -59,7 +66,11 @@ export function FormElement({ item, index, onDrop, page, sectionIndex, setSelect
   const classes = useStyles({ isOver, isDragging });
 
   return (
-    <div className={classes.pageElement} ref={getRef} onClick={() => setSelectedItem(item)}>
+    <div
+      className={classes.pageElement}
+      ref={getRef}
+      onClick={() => setSelectedItem(item)}
+    >
       <div style={{ pointerEvents: "none" }}>
         <Element item={item} />
       </div>

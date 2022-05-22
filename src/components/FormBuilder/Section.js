@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback } from "react";
 import { FormElement } from "./FormElement";
 import { useDrag, useDrop } from "react-dnd";
-import { ControlTypes } from "../untils/types";
+import { ControlTypes } from "../../untils/types";
 import { makeStyles } from "@material-ui/core/styles";
 import { v4 as uuidv4 } from "uuid";
 
@@ -14,24 +14,35 @@ const useStyles = makeStyles(() => ({
     flexDirection: "column",
     cursor: "move",
     borderRadius: "7px",
-    backgroundColor: props => (props.isDragging ? "#3785F4" : "transparent"),
-    border: props => (props.canDrop ? "1px dashed black" : 0),
+    backgroundColor: (props) => (props.isDragging ? "#3785F4" : "transparent"),
+    border: (props) => (props.canDrop ? "1px dashed black" : 0),
     boxShadow: "0px 1px 5px 3px rgba(0, 0, 0, 0.12)",
   },
 }));
 
-export function Section({ swapFields, updateSection, swapSections, config, addSection, page, index, setSelectedItem }) {
+export function Section({
+  swapFields,
+  updateSection,
+  swapSections,
+  config,
+  addSection,
+  page,
+  index,
+  setSelectedItem,
+}) {
   const [{ isElementOver, isSectionOver, canDrop }, drop] = useDrop(() => {
     return {
       accept: [ControlTypes.CONTROL, ControlTypes.SECTION],
-      collect: monitor => {
+      collect: (monitor) => {
         return {
-          isElementOver: monitor.isOver() && monitor.getItemType() === ControlTypes.ELEMENT,
-          isSectionOver: monitor.isOver() && monitor.getItemType() === ControlTypes.SECTION,
+          isElementOver:
+            monitor.isOver() && monitor.getItemType() === ControlTypes.ELEMENT,
+          isSectionOver:
+            monitor.isOver() && monitor.getItemType() === ControlTypes.SECTION,
           canDrop: monitor.canDrop(),
         };
       },
-      canDrop: item => {
+      canDrop: (item) => {
         if (item.type === ControlTypes.SECTION) {
           return true;
         }
@@ -78,7 +89,7 @@ export function Section({ swapFields, updateSection, swapSections, config, addSe
       item: {
         index,
       },
-      collect: monitor => {
+      collect: (monitor) => {
         return {
           isDragging: monitor.isDragging(),
         };
@@ -86,7 +97,7 @@ export function Section({ swapFields, updateSection, swapSections, config, addSe
     };
   }, [index]);
 
-  const getRef = element => {
+  const getRef = (element) => {
     drag(element);
     drop(element);
   };
@@ -96,7 +107,11 @@ export function Section({ swapFields, updateSection, swapSections, config, addSe
   return (
     <div ref={getRef} className={classes.section}>
       {config && config.title && (
-        <h3 id={config.title.id} style={config.title.config} onClick={() => setSelectedItem(config.title)}>
+        <h3
+          id={config.title.id}
+          style={config.title.config}
+          onClick={() => setSelectedItem(config.title)}
+        >
           {config.title.config.text}
         </h3>
       )}

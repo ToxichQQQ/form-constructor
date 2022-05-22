@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Button, Divider, Grid, TextField, Typography } from "@material-ui/core";
+import {
+  Button,
+  Divider,
+  Grid,
+  TextField,
+  Typography,
+} from "@material-ui/core";
 import { Customization } from "../Customization/Customization";
 import { SavePanel } from "./SavePanel";
 import { BlockList } from "./BlockList";
@@ -40,7 +46,7 @@ const useStyles = makeStyles(() => ({
   },
   saveTemplateContainer: {
     width: "100%",
-    position: 'relative',
+    position: "relative",
     bottom: 0,
   },
   saveTemplateButton: {
@@ -57,7 +63,7 @@ const useStyles = makeStyles(() => ({
     marginBottom: "30px",
     color: "#3785F4",
     cursor: "pointer",
-    marginTop:'20px'
+    marginTop: "20px",
   },
   sectionNameContainer: {
     margin: "30px 20px 0",
@@ -86,7 +92,9 @@ export function FormBuilder({
 
   const findSectionTitle = () => {
     for (let page of config) {
-      const sectionWithTile = page.sections.find(section => section.title.id == selectedSection);
+      const sectionWithTile = page.sections.find(
+        (section) => section.title.id == selectedSection
+      );
       if (sectionWithTile !== undefined) {
         return sectionWithTile.title.config.text;
       }
@@ -100,7 +108,9 @@ export function FormBuilder({
       <Typography variant="h3" component="h3" className={classes.header}>
         Configurator Blocks
       </Typography>
-      <p className={classes.formBuilderText}>Select blocks you would like to use in your template</p>
+      <p className={classes.formBuilderText}>
+        Select blocks you would like to use in your template
+      </p>
       <Grid container justify="center">
         <Grid item xs={12} className={classes.divider}>
           <Divider />
@@ -108,10 +118,19 @@ export function FormBuilder({
       </Grid>
       {selectedSection && !saveMode && !customizationMode && (
         <Grid item xs={12} className={classes.sectionNameContainer}>
-          <Typography variant="h5" component="h5" className={classes.sectionNameHeader}>
+          <Typography
+            variant="h5"
+            component="h5"
+            className={classes.sectionNameHeader}
+          >
             Section Name
           </Typography>
-          <TextField variant="standard" fullWidth disabled value={findSectionTitle()} />
+          <TextField
+            variant="standard"
+            fullWidth
+            disabled
+            value={findSectionTitle()}
+          />
         </Grid>
       )}
       {customizationMode ? (
@@ -134,7 +153,11 @@ export function FormBuilder({
       ) : (
         <BlockList selectNewElement={selectNewElement} />
       )}
-      <Grid container justify="center" className={classes.saveTemplateContainer}>
+      <Grid
+        container
+        justify="center"
+        className={classes.saveTemplateContainer}
+      >
         {saveMode || (
           <Button
             className={classes.saveTemplateButton}

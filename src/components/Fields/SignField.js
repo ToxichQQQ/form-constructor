@@ -14,12 +14,17 @@ export function SignField({ fieldConfig }) {
   const classes = useStyles();
   const [value, setValue] = useState("");
 
-  const upperCaseFirstLetter = value => value.slice(0, 1).toUpperCase() + value.slice(1, value.length);
+  const upperCaseFirstLetter = (value) =>
+    value.slice(0, 1).toUpperCase() + value.slice(1, value.length);
 
   const validation = () => {
     if (value) {
       const newValue = value.split(" ");
-      if (newValue.length != 2 || newValue[0].length < 3 || newValue[1].length < 3) {
+      if (
+        newValue.length != 2 ||
+        newValue[0].length < 3 ||
+        newValue[1].length < 3
+      ) {
         return fieldConfig.errorMessage;
       }
     }
@@ -36,7 +41,7 @@ export function SignField({ fieldConfig }) {
       helperText={validation()}
       error={validation() !== fieldConfig.helperText}
       required={fieldConfig.required}
-      onChange={e => {
+      onChange={(e) => {
         const value = upperCaseFirstLetter(e.target.value);
         setValue(value);
       }}

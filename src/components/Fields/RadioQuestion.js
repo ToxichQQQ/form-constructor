@@ -1,5 +1,10 @@
 import React from "react";
-import { FormControl, FormControlLabel, Radio, RadioGroup } from "@material-ui/core";
+import {
+  FormControl,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
 
@@ -32,10 +37,12 @@ export const RadioQuestion = ({ fieldConfig }) => {
         Quick Question
       </Typography>
       <p className={classes.text}>Does this business:</p>
-      <p className={classes.text}>1.Generate $10 million or more in total sales?</p>
+      <p className={classes.text}>
+        1.Generate $10 million or more in total sales?
+      </p>
       <p className={classes.text}>2.Have more than 6 owners?</p>
       <RadioGroup className={classes.radioGroup} name={fieldConfig.fieldName}>
-        {fieldConfig.variants.map(variant => (
+        {fieldConfig.variants.map((variant) => (
           <FormControlLabel
             key={variant.value}
             className={classes.radioButton}

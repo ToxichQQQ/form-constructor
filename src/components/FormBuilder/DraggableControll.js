@@ -1,6 +1,6 @@
 import React from "react";
 import { useDrag } from "react-dnd";
-import { ControlTypes } from "../untils/types";
+import { ControlTypes } from "../../untils/types";
 import { Element } from "./Element";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -20,7 +20,7 @@ export function DraggableControl({ item, selectNewElement }) {
     return {
       type: ControlTypes.CONTROL,
       item,
-      collect: monitor => {
+      collect: (monitor) => {
         return {
           isDragging: monitor.isDragging(),
         };
@@ -30,7 +30,10 @@ export function DraggableControl({ item, selectNewElement }) {
 
   return (
     <div ref={drag} className={classes.draggableContainer}>
-      <div className={classes.draggableElement} style={{ opacity: isDragging ? 0.5 : 1 }}>
+      <div
+        className={classes.draggableElement}
+        style={{ opacity: isDragging ? 0.5 : 1 }}
+      >
         <Element item={item} selectNewElement={selectNewElement} />
       </div>
     </div>

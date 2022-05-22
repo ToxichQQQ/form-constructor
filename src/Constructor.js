@@ -5,10 +5,13 @@ import { Grid } from "@material-ui/core";
 import _ from "lodash";
 import { makeStyles } from "@material-ui/core/styles";
 import Snackbar from "@material-ui/core/Snackbar";
-import Alert from '@material-ui/lab/Alert';
-
+import Alert from "@material-ui/lab/Alert";
 
 const useStyles = makeStyles(() => ({
+  constructor: {
+    backgroundColor: "white",
+    height: "100vh",
+  },
   customizeSelect: {
     display: "flex",
   },
@@ -27,7 +30,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export function Constructor({config,setConfig}) {
+export function Constructor({ config, setConfig }) {
   const classes = useStyles();
 
   const [customizationMode, setCustomizationMode] = useState(false);
@@ -37,27 +40,30 @@ export function Constructor({config,setConfig}) {
   const [selectedSection, setSelectedSection] = useState("");
   const [responseSuccess, setResponseSuccess] = useState(true);
   const [openModal, setOpenModal] = useState(false);
-  const [modalMessage, setModalMessage] = useState("Successfully updated the account!");
+  const [modalMessage, setModalMessage] = useState(
+    "Successfully updated the account!"
+  );
 
-  const handleEditTemplate = async templateTitle => {
+  const handleEditTemplate = async (templateTitle) => {};
 
-  };
-
-  const handleCreateNewTemplate = async templateTitle => {
-  };
+  const handleCreateNewTemplate = async (templateTitle) => {};
 
   const duplicatedValues = () => {
     let allFields = [];
 
-    config.map(page =>
-      page.sections.map(section => section.fields.map(field => allFields.push(field.config.fieldName)))
+    config.map((page) =>
+      page.sections.map((section) =>
+        section.fields.map((field) => allFields.push(field.config.fieldName))
+      )
     );
 
-    const duplicates = _.filter(allFields, (value, index, iteratee) => _.includes(iteratee, value, index + 1));
+    const duplicates = _.filter(allFields, (value, index, iteratee) =>
+      _.includes(iteratee, value, index + 1)
+    );
     return duplicates;
   };
 
-  const handleChangeTemplateList = templateTitle => {
+  const handleChangeTemplateList = (templateTitle) => {
     const duplicates = duplicatedValues();
     if (duplicates.length > 0) {
       setResponseSuccess(false);
@@ -76,10 +82,9 @@ export function Constructor({config,setConfig}) {
     setEditTemplateMode(false);
   };
 
-  const deleteCreatedTemplate = () => {
-  };
+  const deleteCreatedTemplate = () => {};
 
-  const selectNewTemplate = templateConfig => {
+  const selectNewTemplate = (templateConfig) => {
     setConfig(templateConfig);
   };
 
@@ -87,44 +92,51 @@ export function Constructor({config,setConfig}) {
     setOpenModal(false);
   };
 
-  const selectNewElement = value => {
+  const selectNewElement = (value) => {
     setCustomizationMode(true);
     setSelectedItem(value);
     setInitialItem(value);
   };
 
   return (
-      <Grid container style={{ backgroundColor: "white", height: "100vh" }}>
-        <Grid item className={classes.area}>
-            <Area
-              selectedSection={selectedSection}
-              setSelectedSection={setSelectedSection}
-              config={config}
-              setConfig={setConfig}
-              setSelectedItem={selectNewElement}
-            />
-        </Grid>
-          <Grid item className={classes.sideNav}>
-            <FormBuilder
-              handleChangeTemplateList={handleChangeTemplateList}
-              selectedSection={selectedSection}
-              deleteCreatedTemplate={deleteCreatedTemplate}
-              selectNewElement={selectNewElement}
-              config={config}
-              setConfig={setConfig}
-              selectedItem={selectedItem}
-              setSelectedItem={setSelectedItem}
-              setCustomizationMode={setCustomizationMode}
-              initialItem={initialItem}
-              customizationMode={customizationMode}
-              selectNewTemplate={selectNewTemplate}
-            />
-          </Grid>
-        <Snackbar open={openModal} autoHideDuration={3000} onClose={handleCloseModal}>
-          <Alert onClose={handleCloseModal} severity={responseSuccess ? "success" : "error"}>
-            {modalMessage}
-          </Alert>
-        </Snackbar>
+    <Grid container className={classes.constructor}>
+      <Grid item className={classes.area}>
+        <Area
+          selectedSection={selectedSection}
+          setSelectedSection={setSelectedSection}
+          config={config}
+          setConfig={setConfig}
+          setSelectedItem={selectNewElement}
+        />
       </Grid>
+      <Grid item className={classes.sideNav}>
+        <FormBuilder
+          handleChangeTemplateList={handleChangeTemplateList}
+          selectedSection={selectedSection}
+          deleteCreatedTemplate={deleteCreatedTemplate}
+          selectNewElement={selectNewElement}
+          config={config}
+          setConfig={setConfig}
+          selectedItem={selectedItem}
+          setSelectedItem={setSelectedItem}
+          setCustomizationMode={setCustomizationMode}
+          initialItem={initialItem}
+          customizationMode={customizationMode}
+          selectNewTemplate={selectNewTemplate}
+        />
+      </Grid>
+      <Snackbar
+        open={openModal}
+        autoHideDuration={3000}
+        onClose={handleCloseModal}
+      >
+        <Alert
+          onClose={handleCloseModal}
+          severity={responseSuccess ? "success" : "error"}
+        >
+          {modalMessage}
+        </Alert>
+      </Snackbar>
+    </Grid>
   );
 }

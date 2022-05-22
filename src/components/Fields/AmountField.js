@@ -5,9 +5,10 @@ export function AmountField({ fieldConfig }) {
   const [value, setValue] = useState(undefined);
   const maxAmountValue = 1000000000;
 
-  const formatCurrency = value => {
+  const formatCurrency = (value) => {
     let formattedValue = value && value.replace(/[^\d.]/g, "");
-    if (typeof formattedValue === "number") formattedValue = formattedValue.toString();
+    if (typeof formattedValue === "number")
+      formattedValue = formattedValue.toString();
     if (formattedValue && formattedValue !== "$" && formattedValue !== "0") {
       formattedValue = formattedValue.replace(/\$/g, "");
       formattedValue = formattedValue.replace(/,/g, "");
@@ -30,12 +31,15 @@ export function AmountField({ fieldConfig }) {
     } else return "";
   };
 
-  const parseCurrency = value => {
+  const parseCurrency = (value) => {
     if (value) {
       let requiredValue = value.replace(/[^0-9.]/g, "");
 
       if (!isNaN(parseInt(requiredValue))) {
-        requiredValue = requiredValue > maxAmountValue ? requiredValue.slice(0, -1) : requiredValue;
+        requiredValue =
+          requiredValue > maxAmountValue
+            ? requiredValue.slice(0, -1)
+            : requiredValue;
       }
 
       return requiredValue;
@@ -63,7 +67,7 @@ export function AmountField({ fieldConfig }) {
       value={value}
       error={isValidValue()}
       helperText={isValidValue() && fieldConfig.errorMessage}
-      onChange={e => {
+      onChange={(e) => {
         const value = formatCurrency(e.target.value);
         setValue(value);
       }}

@@ -33,7 +33,11 @@ const useStyles = makeStyles(() => ({
     borderColor: "#8D1B11",
   },
 }));
-export const SavePanel = ({ setSaveMode, deleteCreatedTemplate, handleChangeTemplateList }) => {
+export const SavePanel = ({
+  setSaveMode,
+  deleteCreatedTemplate,
+  handleChangeTemplateList,
+}) => {
   const classes = useStyles();
   const [templateTitle, setTemplateTitle] = useState("");
 
@@ -46,7 +50,7 @@ export const SavePanel = ({ setSaveMode, deleteCreatedTemplate, handleChangeTemp
         <TextField
           fullWidth
           label="Type the template name"
-          onChange={e => setTemplateTitle(e.target.value)}
+          onChange={(e) => setTemplateTitle(e.target.value)}
           value={templateTitle}
         />
       </Grid>

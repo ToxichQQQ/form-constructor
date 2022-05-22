@@ -1,13 +1,16 @@
 export const questions = [
   {
-    value: "isSupSpanishLang",
-    questionText: "Support Spanish Language?",
+    value: "firstQuestion",
+    questionText: "How are u?",
     type: "radio",
-    variants: [{ value: "Yes", label: "Yes" }, { value: "No", label: "No" }],
+    variants: [
+      { value: "Yes", label: "Yes" },
+      { value: "No", label: "No" },
+    ],
   },
   {
-    value: "primaryIndustry",
-    questionText: "Please Select Your Primary Industry",
+    value: "secondQuestion",
+    questionText: "Please Select Your  Industry",
     type: "select",
     variants: [
       {
@@ -155,8 +158,10 @@ export const questions = [
         label: "Utilities",
       },
       {
-        value: "Administrative and Support and Waste Management and Remediation Services",
-        label: "Administrative and Support and Waste Management and Remediation Services",
+        value:
+          "Administrative and Support and Waste Management and Remediation Services",
+        label:
+          "Administrative and Support and Waste Management and Remediation Services",
       },
       {
         value: "Wholesale Trade",
@@ -165,16 +170,19 @@ export const questions = [
     ],
   },
   {
-    value: "minOwnership",
-    questionText: "Min Ownership % on Application?",
+    value: "thirdQuestion",
+    questionText: "Type your name",
     type: "input",
-    helperText: "Skip this question if you have conditional type",
+    helperText: "Skip this question if you want",
   },
   {
-    value: "isAgreeTerms",
+    value: "fourthQuestion",
     questionText: `Do You Agree to This Terms and Conditions`,
     type: "terms",
-    variants: [{ value: "Yes", label: "Yes" }, { value: "No", label: "No" }],
+    variants: [
+      { value: "Yes", label: "Yes" },
+      { value: "No", label: "No" },
+    ],
   },
   {
     value: "createTemplate",

@@ -1,14 +1,14 @@
 import React from "react";
 import { Section } from "./Section";
 import { useDrag, useDrop } from "react-dnd";
-import { ControlTypes } from "../untils/types";
+import { ControlTypes } from "../../untils/types";
 import { Divider, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(() => ({
   page: {
-    backgroundColor: props => (props.isDragging ? "#ebf3fe" : "transparent"),
-    margin: props => (props.isEditorMode ? "100px 30px" : "0 20px 0"),
+    backgroundColor: (props) => (props.isDragging ? "#ebf3fe" : "transparent"),
+    margin: (props) => (props.isEditorMode ? "100px 30px" : "0 20px 0"),
     padding: "10px",
   },
   pageInfoContainer: {
@@ -40,7 +40,7 @@ export function Page({
   const [{ canDrop, isOver }, drop] = useDrop(() => {
     return {
       accept: ControlTypes.PAGE,
-      collect: monitor => {
+      collect: (monitor) => {
         return {
           canDrop: monitor.canDrop(),
           isOver: monitor.isOver(),
@@ -59,7 +59,7 @@ export function Page({
       item: {
         page,
       },
-      collect: monitor => {
+      collect: (monitor) => {
         return {
           isDragging: monitor.isDragging(),
         };
@@ -71,7 +71,7 @@ export function Page({
 
   const isEmpty = Object.keys(config).length == 0;
 
-  const getRef = element => {
+  const getRef = (element) => {
     drag(element);
     drop(element);
   };

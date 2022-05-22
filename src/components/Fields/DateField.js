@@ -5,7 +5,7 @@ import formatString from "format-string-by-pattern";
 export const DateField = ({ fieldConfig }) => {
   const [value, setValue] = useState(undefined);
 
-  const formattingValue = value => {
+  const formattingValue = (value) => {
     const formattedValue = value.replace(/[^\d]/g, "");
     if (formattedValue.length > 8) {
       return formattedValue.slice(0, -1);
@@ -16,7 +16,10 @@ export const DateField = ({ fieldConfig }) => {
   const validation = () => {
     const newValue = new Date(value && value.replace(/[^\d / ]/g, ""));
 
-    if (newValue > new Date(fieldConfig.maxValue) || newValue < new Date(fieldConfig.minValue)) {
+    if (
+      newValue > new Date(fieldConfig.maxValue) ||
+      newValue < new Date(fieldConfig.minValue)
+    ) {
       return true;
     }
   };
@@ -31,7 +34,7 @@ export const DateField = ({ fieldConfig }) => {
       helperText={validation() && fieldConfig.errorMessage}
       error={validation()}
       value={value}
-      onChange={e => {
+      onChange={(e) => {
         const value = formattingValue(e.target.value);
         setValue(formatString("99/99/9999", value));
       }}

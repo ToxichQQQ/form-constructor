@@ -19,7 +19,11 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export const CustomizationPanel = ({ fieldName, value, changeElementValue }) => {
+export const CustomizationPanel = ({
+  fieldName,
+  value,
+  changeElementValue,
+}) => {
   const classes = useStyles();
 
   const changeSelectOption = (value, optionIndex, optionName, newOption) => {
@@ -28,7 +32,7 @@ export const CustomizationPanel = ({ fieldName, value, changeElementValue }) => 
     return newValue;
   };
 
-  const createFieldLabel = value => {
+  const createFieldLabel = (value) => {
     let res = value.match(/[A-Z]?[a-z]+/g);
     res[0] = res[0][0].toUpperCase() + res[0].slice(1);
     return res.join(" ");
@@ -48,7 +52,7 @@ export const CustomizationPanel = ({ fieldName, value, changeElementValue }) => 
       return (
         <Grid item xs={12} className={classes.customizeContainer}>
           <TextareaAutosize
-            onChange={e => changeElementValue(fieldName, e.target.value)}
+            onChange={(e) => changeElementValue(fieldName, e.target.value)}
             value={value}
             minRows={4}
             maxRows={6}
@@ -73,7 +77,7 @@ export const CustomizationPanel = ({ fieldName, value, changeElementValue }) => 
               labelId="field-width-label"
               value={value}
               variant="standard"
-              onChange={e => changeElementValue(fieldName, e.target.value)}
+              onChange={(e) => changeElementValue(fieldName, e.target.value)}
             >
               <MenuItem className={classes.customizeSelect} value={true}>
                 Yes
@@ -89,14 +93,17 @@ export const CustomizationPanel = ({ fieldName, value, changeElementValue }) => 
       return (
         <Grid item xs={12} className={classes.customizeContainer}>
           <FormControl className={classes.formControll} fullWidth>
-            <InputLabel id="field-required-label" className={classes.selectLabel}>
+            <InputLabel
+              id="field-required-label"
+              className={classes.selectLabel}
+            >
               Required
             </InputLabel>
             <Select
               labelId="field-required-label"
               value={value}
               variant="standard"
-              onChange={e => changeElementValue(fieldName, e.target.value)}
+              onChange={(e) => changeElementValue(fieldName, e.target.value)}
             >
               <MenuItem className={classes.customizeSelect} value={true}>
                 Yes
@@ -112,14 +119,17 @@ export const CustomizationPanel = ({ fieldName, value, changeElementValue }) => 
       return (
         <Grid item xs={12} className={classes.customizeContainer}>
           <FormControl className={classes.formControll} fullWidth>
-            <InputLabel id="field-disabled-label" className={classes.selectLabel}>
+            <InputLabel
+              id="field-disabled-label"
+              className={classes.selectLabel}
+            >
               Disabled
             </InputLabel>
             <Select
               labelId="field-disabled-label"
               value={value}
               variant="standard"
-              onChange={e => changeElementValue(fieldName, e.target.value)}
+              onChange={(e) => changeElementValue(fieldName, e.target.value)}
             >
               <MenuItem className={classes.customizeSelect} value={true}>
                 Yes
@@ -140,16 +150,32 @@ export const CustomizationPanel = ({ fieldName, value, changeElementValue }) => 
                 variant="standard"
                 label={`Option Name ${index + 1}`}
                 value={option.optionLabel}
-                onChange={e =>
-                  changeElementValue(fieldName, changeSelectOption(value, index, "optionLabel", e.target.value))
+                onChange={(e) =>
+                  changeElementValue(
+                    fieldName,
+                    changeSelectOption(
+                      value,
+                      index,
+                      "optionLabel",
+                      e.target.value
+                    )
+                  )
                 }
               />
               <TextField
                 variant="standard"
                 label={`Option Value ${index + 1}`}
                 value={option.optionValue}
-                onChange={e =>
-                  changeElementValue(fieldName, changeSelectOption(value, index, "optionValue", e.target.value))
+                onChange={(e) =>
+                  changeElementValue(
+                    fieldName,
+                    changeSelectOption(
+                      value,
+                      index,
+                      "optionValue",
+                      e.target.value
+                    )
+                  )
                 }
               />
             </Grid>
@@ -181,7 +207,7 @@ export const CustomizationPanel = ({ fieldName, value, changeElementValue }) => 
             label={createFieldLabel(fieldName)}
             value={getInputValue(fieldName, value)}
             variant="standard"
-            onChange={e => changeElementValue(fieldName, e.target.value)}
+            onChange={(e) => changeElementValue(fieldName, e.target.value)}
           />
         </Grid>
       );

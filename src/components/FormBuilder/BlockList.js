@@ -25,13 +25,21 @@ export const BlockList = ({ selectNewElement }) => {
     <div className={classes.blockList}>
       <Grid container justify="space-between" alignItems="center">
         <Grid item xs={6}>
-          <Typography variant="h5" component="h5" className={classes.blockListHeader}>
+          <Typography
+            variant="h5"
+            component="h5"
+            className={classes.blockListHeader}
+          >
             All blocks
           </Typography>
         </Grid>
       </Grid>
       {builderItems.map((item, i) => (
-        <DraggableControl selectNewElement={selectNewElement} item={item} key={i} />
+        <DraggableControl
+          selectNewElement={selectNewElement}
+          item={item}
+          key={i}
+        />
       ))}
     </div>
   );

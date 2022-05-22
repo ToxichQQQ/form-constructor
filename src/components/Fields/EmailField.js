@@ -6,7 +6,8 @@ export function EmailField({ fieldConfig }) {
 
   const isValidEmail = () => {
     if (value) {
-      const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      const re =
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return !re.test(String(value).toLowerCase());
     } else {
       return false;
@@ -24,7 +25,7 @@ export function EmailField({ fieldConfig }) {
       error={isValidEmail()}
       helperText={isValidEmail() && fieldConfig.errorMessage}
       value={value}
-      onChange={e => setValue(e.target.value)}
+      onChange={(e) => setValue(e.target.value)}
     />
   );
 }

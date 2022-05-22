@@ -5,7 +5,7 @@ import { InputAdornment } from "@material-ui/core";
 export const PercentField = ({ fieldConfig }) => {
   const [value, setValue] = useState(undefined);
 
-  const formattingValue = value => {
+  const formattingValue = (value) => {
     const formattedValue = value.replace(/[^\d]/g, "");
     if (Number(formattedValue) > Number(fieldConfig.maxValue)) {
       const newValue = formattedValue.slice(0, -1);
@@ -15,7 +15,8 @@ export const PercentField = ({ fieldConfig }) => {
     setValue(formattedValue);
   };
 
-  const validation = () => value && value.replace(/[^\d]/g, "") < fieldConfig.minValue;
+  const validation = () =>
+    value && value.replace(/[^\d]/g, "") < fieldConfig.minValue;
 
   return (
     <TextField
@@ -30,7 +31,7 @@ export const PercentField = ({ fieldConfig }) => {
       InputProps={{
         endAdornment: <InputAdornment position="end">%</InputAdornment>,
       }}
-      onChange={e => formattingValue(e.target.value)}
+      onChange={(e) => formattingValue(e.target.value)}
     />
   );
 };

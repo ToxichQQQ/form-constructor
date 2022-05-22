@@ -25,7 +25,11 @@ export const CustomCheckbox = ({ fieldConfig }) => {
   };
   return (
     <Grid container alignItems="center" className={classes.customCheckbox}>
-      <Checkbox color="default" checked={value} onClick={() => setValue(prevState => !prevState)} />
+      <Checkbox
+        color="default"
+        checked={value}
+        onClick={() => setValue((prevState) => !prevState)}
+      />
       <span style={{ textDecoration: "underline" }} onClick={handleClickOpen}>
         {fieldConfig.Label}
       </span>

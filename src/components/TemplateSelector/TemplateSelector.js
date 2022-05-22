@@ -145,10 +145,8 @@ const useStyles = makeStyles(() => ({
 }));
 export const TemplateSelector = ({
   selectNewTemplate,
-  customTemplates,
   editTemplate,
   setOcaType,
-  activeTemplate,
   accountName,
   selectedTemplate,
   setSelectedTemplate,
@@ -156,6 +154,10 @@ export const TemplateSelector = ({
   const classes = useStyles();
   const [deleteMode, setDeleteMode] = useState(false);
   const [activeMode, setActiveMode] = useState(false);
+  const [customTemplates, setCustomTemplates] = useState([]);
+  const [activeTemplate, setActiveTemplate] = useState(
+    customTemplates[0] || ""
+  );
 
   const handleEnableDeleteMode = (e, template) => {
     setSelectedTemplate(template);
@@ -164,7 +166,7 @@ export const TemplateSelector = ({
     e.stopPropagation();
   };
 
-  const handleEnableActiveMode = template => {
+  const handleEnableActiveMode = (template) => {
     setSelectedTemplate(template);
     setDeleteMode(false);
     setActiveMode(true);
@@ -175,7 +177,9 @@ export const TemplateSelector = ({
       <Typography variant="h3" component="h3" className={classes.header}>
         Global Templates Configurator
       </Typography>
-      <p className={classes.templateSelectorText}>Select template you would like to use</p>
+      <p className={classes.templateSelectorText}>
+        Select template you would like to use
+      </p>
       <Grid item xs={12}>
         <Grid container justify="center">
           <Grid
@@ -187,10 +191,16 @@ export const TemplateSelector = ({
             }}
           >
             <div className={classes.ocaTemplateContent}>
-              <Typography variant="h6" component="h6" className={classes.ocaTemplateHeader}>
+              <Typography
+                variant="h6"
+                component="h6"
+                className={classes.ocaTemplateHeader}
+              >
                 Complex
               </Typography>
-              <p className={classes.ocaTemplateDescription}>A complete template</p>
+              <p className={classes.ocaTemplateDescription}>
+                A complete template
+              </p>
             </div>
           </Grid>
           <Grid
@@ -202,10 +212,16 @@ export const TemplateSelector = ({
             }}
           >
             <div className={classes.ocaTemplateContent}>
-              <Typography variant="h6" component="h6" className={classes.ocaTemplateHeader}>
+              <Typography
+                variant="h6"
+                component="h6"
+                className={classes.ocaTemplateHeader}
+              >
                 Standard
               </Typography>
-              <p className={classes.ocaTemplateDescription}>Overall good choice</p>
+              <p className={classes.ocaTemplateDescription}>
+                Overall good choice
+              </p>
             </div>
           </Grid>
           <Grid
@@ -217,23 +233,40 @@ export const TemplateSelector = ({
             }}
           >
             <div className={classes.ocaTemplateContent}>
-              <Typography variant="h6" component="h6" className={classes.ocaTemplateHeader}>
+              <Typography
+                variant="h6"
+                component="h6"
+                className={classes.ocaTemplateHeader}
+              >
                 Simple
               </Typography>
-              <p className={classes.ocaTemplateDescription}>The lightest version</p>
+              <p className={classes.ocaTemplateDescription}>
+                Сreate your form from scratch
+              </p>
             </div>
           </Grid>
         </Grid>
       </Grid>
       <Grid item xs={12} className={classes.customTemplates}>
-        <Typography variant="h4" component="h4" className={classes.customTemplatesHeader}>
+        <Typography
+          variant="h4"
+          component="h4"
+          className={classes.customTemplatesHeader}
+        >
           My Templates
         </Typography>
         <p className={classes.selectedTemplate}>
-          Live: <span className={classes.subText}>{activeTemplate && activeTemplate.name}</span>
+          Live:{" "}
+          <span className={classes.subText}>
+            {activeTemplate && activeTemplate.name}
+          </span>
         </p>
-        <Grid container wrap="nowrap" className={classes.customTemplatesContainer}>
-          {customTemplates.map(template => (
+        <Grid
+          container
+          wrap="nowrap"
+          className={classes.customTemplatesContainer}
+        >
+          {customTemplates.map((template) => (
             <Grid
               onClick={() => handleEnableActiveMode(template)}
               key={template.ocaTemplateId}
@@ -244,16 +277,34 @@ export const TemplateSelector = ({
                 backgroundColor: template.active ? "#ebf3fe" : "#f3f3f3",
               }}
             >
-              <Typography variant="h6" component="h6" className={classes.customTemplateTitle}>
+              <Typography
+                variant="h6"
+                component="h6"
+                className={classes.customTemplateTitle}
+              >
                 {template.name}
               </Typography>
-              <Grid container justify="space-between" alignItems="center" className={classes.customTemplateInfo}>
+              <Grid
+                container
+                justify="space-between"
+                alignItems="center"
+                className={classes.customTemplateInfo}
+              >
                 <p className={classes.customTemplateText}>
-                  Last Update: <span className={classes.subText}>{template.lastUpdateDate}</span>
+                  Last Update:{" "}
+                  <span className={classes.subText}>
+                    {template.lastUpdateDate}
+                  </span>
                 </p>
                 <Grid item>
-                  <EditIcon onClick={() => editTemplate(template)} className={classes.templateIcon} />
-                  <DeleteIcon onClick={e => handleEnableDeleteMode(e, template)} className={classes.templateIcon} />
+                  <EditIcon
+                    onClick={() => editTemplate(template)}
+                    className={classes.templateIcon}
+                  />
+                  <DeleteIcon
+                    onClick={(e) => handleEnableDeleteMode(e, template)}
+                    className={classes.templateIcon}
+                  />
                 </Grid>
               </Grid>
             </Grid>
@@ -273,7 +324,9 @@ export const TemplateSelector = ({
           {selectedTemplate && activeMode && (
             <Grid item xs={12} className={classes.buttonsSection}>
               <Divider />
-              <p className={classes.helperText}>Do you want to make “{selectedTemplate.name}” template active?</p>
+              <p className={classes.helperText}>
+                Do you want to make “{selectedTemplate.name}” template active?
+              </p>
               <Grid container justify="center" alignItems="center">
                 <Button
                   variant="contained"
@@ -295,9 +348,14 @@ export const TemplateSelector = ({
           {deleteMode && (
             <Grid item xs={12} className={classes.buttonsSection}>
               <Divider />
-              <p className={classes.helperText}>Are you sure that you want to delete “{selectedTemplate.name}”</p>
+              <p className={classes.helperText}>
+                Are you sure that you want to delete “{selectedTemplate.name}”
+              </p>
               <Grid container justify="center" alignItems="center">
-                <Button variant="contained" className={`${classes.customizationButton} ${classes.deleteButton}`}>
+                <Button
+                  variant="contained"
+                  className={`${classes.customizationButton} ${classes.deleteButton}`}
+                >
                   Delete
                 </Button>
                 <Button

@@ -47,7 +47,13 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export const PageInfoPanel = ({ addSection, page, config, setSelectedSection, selectedSection }) => {
+export const PageInfoPanel = ({
+  addSection,
+  page,
+  config,
+  setSelectedSection,
+  selectedSection,
+}) => {
   const classes = useStyles();
 
   const titleConfig = {
@@ -66,7 +72,10 @@ export const PageInfoPanel = ({ addSection, page, config, setSelectedSection, se
   return (
     <Grid container alignItems="center" className={classes.pageInfoPanel}>
       <Grid>
-        <Button className={classes.addNewSectionButton} onClick={() => addSection(titleConfig, page)}>
+        <Button
+          className={classes.addNewSectionButton}
+          onClick={() => addSection(titleConfig, page)}
+        >
           <AddIcon style={{ color: "white", fontSize: "34px" }} />
         </Button>
       </Grid>
@@ -76,7 +85,8 @@ export const PageInfoPanel = ({ addSection, page, config, setSelectedSection, se
             <Link
               key={section.title}
               style={{
-                background: section.title.id === selectedSection ? "#3785F4" : "grey",
+                background:
+                  section.title.id === selectedSection ? "#3785F4" : "grey",
               }}
               className={classes.sectionListItem}
               onClick={() => {

@@ -18,7 +18,7 @@ export function PhoneField({ fieldConfig }) {
       required={fieldConfig.required}
       helperText={isValidPhone() && fieldConfig.errorMessage}
       value={value}
-      onChange={e => {
+      onChange={(e) => {
         const value = formatString("(999) 999-9999", e.target.value);
         setValue(value);
       }}

@@ -1,7 +1,10 @@
 import React from "react";
 import { Grid, TextField } from "@material-ui/core";
 
-export const CustomizationCheckbox = ({ elementSettings, changeElementValue }) => {
+export const CustomizationCheckbox = ({
+  elementSettings,
+  changeElementValue,
+}) => {
   return (
     <Grid container>
       {elementSettings &&
@@ -11,7 +14,7 @@ export const CustomizationCheckbox = ({ elementSettings, changeElementValue }) =
               label={key}
               value={value}
               variant="standard"
-              onChange={e => changeElementValue(key, e.target.value)}
+              onChange={(e) => changeElementValue(key, e.target.value)}
             />
           </Grid>
         ))}

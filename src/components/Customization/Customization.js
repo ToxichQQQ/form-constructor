@@ -45,9 +45,18 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export function Customization({ selectedItem, config, setConfig, initialItem, setCustomizationMode, setSelectedItem }) {
+export function Customization({
+  selectedItem,
+  config,
+  setConfig,
+  initialItem,
+  setCustomizationMode,
+  setSelectedItem,
+}) {
   const classes = useStyles();
-  const [elementSettings, setElementSettings] = useState(selectedItem && Object.entries(selectedItem.config));
+  const [elementSettings, setElementSettings] = useState(
+    selectedItem && Object.entries(selectedItem.config)
+  );
 
   useEffect(() => {
     if (selectedItem !== "") {
@@ -56,13 +65,15 @@ export function Customization({ selectedItem, config, setConfig, initialItem, se
     }
   }, [selectedItem]);
 
-  const updateConfig = value => {
+  const updateConfig = (value) => {
     if (!value) return false;
-    setConfig(prevConfig =>
-      prevConfig.map(page => ({
-        sections: page.sections.map(section => ({
+    setConfig((prevConfig) =>
+      prevConfig.map((page) => ({
+        sections: page.sections.map((section) => ({
           title: section.title.id === value.id ? value : section.title,
-          fields: section.fields.map(field => (field.id === value.id ? value : field)),
+          fields: section.fields.map((field) =>
+            field.id === value.id ? value : field
+          ),
         })),
       }))
     );
@@ -78,17 +89,21 @@ export function Customization({ selectedItem, config, setConfig, initialItem, se
   };
   const deleteElement = () => {
     if (selectedItem.type === "title") {
-      setConfig(prevConfig =>
-        prevConfig.map(page => ({
-          sections: page.sections.filter(section => section.title.id !== selectedItem.id),
+      setConfig((prevConfig) =>
+        prevConfig.map((page) => ({
+          sections: page.sections.filter(
+            (section) => section.title.id !== selectedItem.id
+          ),
         }))
       );
     } else {
-      setConfig(prevConfig =>
-        prevConfig.map(page => ({
-          sections: page.sections.map(section => ({
+      setConfig((prevConfig) =>
+        prevConfig.map((page) => ({
+          sections: page.sections.map((section) => ({
             ...section,
-            fields: section.fields.filter(field => field.id !== selectedItem.id),
+            fields: section.fields.filter(
+              (field) => field.id !== selectedItem.id
+            ),
           })),
         }))
       );
@@ -99,7 +114,7 @@ export function Customization({ selectedItem, config, setConfig, initialItem, se
   const changeElementValue = (key, value) => {
     if (key === "fontSize") {
       const newValue = value + "px";
-      setSelectedItem(prevSettings => ({
+      setSelectedItem((prevSettings) => ({
         ...prevSettings,
         config: {
           ...prevSettings.config,
@@ -107,7 +122,7 @@ export function Customization({ selectedItem, config, setConfig, initialItem, se
         },
       }));
     } else {
-      setSelectedItem(prevSettings => ({
+      setSelectedItem((prevSettings) => ({
         ...prevSettings,
         config: {
           ...prevSettings.config,
@@ -125,7 +140,12 @@ export function Customization({ selectedItem, config, setConfig, initialItem, se
       <Grid container>
         {elementSettings &&
           elementSettings.map(([key, value]) => (
-            <CustomizationPanel key={key} fieldName={key} value={value} changeElementValue={changeElementValue} />
+            <CustomizationPanel
+              key={key}
+              fieldName={key}
+              value={value}
+              changeElementValue={changeElementValue}
+            />
           ))}
       </Grid>
       <Grid container className={classes.buttonsContainer}>

@@ -47,21 +47,29 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export function Area({ setSelectedItem, config, setConfig, setSelectedSection, selectedSection }) {
+export function Area({
+  setSelectedItem,
+  config,
+  setConfig,
+  setSelectedSection,
+  selectedSection,
+}) {
   const classes = useStyles();
   const [isEditorMode, setEditorMode] = useState(true);
   const [pageNumber, setPageNumber] = useState(0);
 
   const updateSection = useCallback(
-    function(index) {
-      return function(section, pageIndex) {
-        setConfig(prevConfig => {
+    function (index) {
+      return function (section, pageIndex) {
+        setConfig((prevConfig) => {
           const currentPage = { ...prevConfig[pageIndex] };
 
           if (!currentPage.sections || currentPage.sections.length === 0) {
             currentPage.sections = [section];
           } else {
-            currentPage.sections = currentPage.sections.map((s, i) => (i === index ? section : s));
+            currentPage.sections = currentPage.sections.map((s, i) =>
+              i === index ? section : s
+            );
           }
 
           return prevConfig.map((p, i) => (i === pageIndex ? currentPage : p));
@@ -72,7 +80,7 @@ export function Area({ setSelectedItem, config, setConfig, setSelectedSection, s
   );
 
   const addPage = () => {
-    setConfig(prevConfig =>
+    setConfig((prevConfig) =>
       prevConfig.concat({
         sections: [
           {
@@ -93,20 +101,22 @@ export function Area({ setSelectedItem, config, setConfig, setSelectedSection, s
   };
 
   function addSection(section, pageIndex) {
-    setConfig(prevConfig => {
+    setConfig((prevConfig) => {
       const currentPage = config[pageIndex];
       if (currentPage.sections) {
         currentPage.sections = currentPage.sections.concat(section);
       } else {
         currentPage.sections = [section];
       }
-      return prevConfig.map((page, index) => (index === pageIndex ? currentPage : page));
+      return prevConfig.map((page, index) =>
+        index === pageIndex ? currentPage : page
+      );
     });
   }
 
   const swapSections = useCallback(
     (indexA, indexB, pageIndex) => {
-      setConfig(prevConfig => {
+      setConfig((prevConfig) => {
         const currentPage = prevConfig[pageIndex];
         const sections = [...currentPage.sections];
         const temp = { ...sections[indexA] };
@@ -124,7 +134,7 @@ export function Area({ setSelectedItem, config, setConfig, setSelectedSection, s
 
   const swapPages = useCallback(
     (indexA, indexB) => {
-      setConfig(prevConfig => {
+      setConfig((prevConfig) => {
         const newConfig = [...prevConfig];
         const temp = { ...prevConfig[indexA] };
         newConfig[indexA] = { ...newConfig[indexB] };
@@ -137,9 +147,9 @@ export function Area({ setSelectedItem, config, setConfig, setSelectedSection, s
   );
 
   function swapFields(sectionIndex) {
-    return function(indexA, indexB, pageIndex, indexSectionA, indexSectionB) {
+    return function (indexA, indexB, pageIndex, indexSectionA, indexSectionB) {
       if (indexSectionA === indexSectionB) {
-        setConfig(prevConfig => {
+        setConfig((prevConfig) => {
           return prevConfig.map((p, i) => {
             if (pageIndex === i) {
               const section = p.sections[sectionIndex];
@@ -165,7 +175,7 @@ export function Area({ setSelectedItem, config, setConfig, setSelectedSection, s
           });
         });
       } else {
-        setConfig(prevConfig => {
+        setConfig((prevConfig) => {
           return prevConfig.map((p, i) => {
             if (pageIndex === i) {
               const sectionFieldsA = p.sections[indexSectionA].fields;
@@ -229,7 +239,12 @@ export function Area({ setSelectedItem, config, setConfig, setSelectedSection, s
       </Grid>
       <Grid container className={classes.navBar} justify="space-between">
         <Grid item xs={4}>
-          <Grid container justify="flex-start" alignItems="center" className={classes.navBarItem}>
+          <Grid
+            container
+            justify="flex-start"
+            alignItems="center"
+            className={classes.navBarItem}
+          >
             {isEditorMode && (
               <Grid item>
                 <p className={classes.navBarPageInfo}>Page {pageNumber + 1}</p>
@@ -237,7 +252,7 @@ export function Area({ setSelectedItem, config, setConfig, setSelectedSection, s
               </Grid>
             )}
             <Button
-              onClick={() => setEditorMode(prevState => !prevState)}
+              onClick={() => setEditorMode((prevState) => !prevState)}
               className={`${classes.navBarButton} ${classes.navBarButtonBlue}`}
             >
               {isEditorMode ? "View Mode" : "Editor Mode"}
@@ -246,11 +261,16 @@ export function Area({ setSelectedItem, config, setConfig, setSelectedSection, s
         </Grid>
         {isEditorMode && (
           <Grid item xs={4}>
-            <Grid container justify="center" alignItems="center" className={classes.navBarItem}>
+            <Grid
+              container
+              justify="center"
+              alignItems="center"
+              className={classes.navBarItem}
+            >
               <Button
                 className={classes.navBarButton}
                 startIcon={<ArrowBackIcon color="primary" />}
-                onClick={() => setPageNumber(prevState => prevState - 1)}
+                onClick={() => setPageNumber((prevState) => prevState - 1)}
                 disabled={pageNumber === 0}
               >
                 Previous Page
@@ -259,7 +279,7 @@ export function Area({ setSelectedItem, config, setConfig, setSelectedSection, s
               <Button
                 className={classes.navBarButton}
                 endIcon={<ArrowForwardIcon color="primary" />}
-                onClick={() => setPageNumber(prevState => prevState + 1)}
+                onClick={() => setPageNumber((prevState) => prevState + 1)}
                 disabled={pageNumber === config.length - 1}
               >
                 Next Page
@@ -268,16 +288,28 @@ export function Area({ setSelectedItem, config, setConfig, setSelectedSection, s
           </Grid>
         )}
         <Grid item xs={4}>
-          <Grid container justify="flex-end" alignItems="center" className={classes.navBarItem}>
+          <Grid
+            container
+            justify="flex-end"
+            alignItems="center"
+            className={classes.navBarItem}
+          >
             <Button
               className={`${classes.navBarButton} ${classes.navBarDeleteButton}`}
-              onClick={() => setConfig(prevState => prevState.filter((page, index) => index !== pageNumber))}
+              onClick={() =>
+                setConfig((prevState) =>
+                  prevState.filter((page, index) => index !== pageNumber)
+                )
+              }
               disabled={config.length === pageNumber + 1}
             >
               Delete page
             </Button>
             <Divider orientation="vertical" style={{ height: "70%" }} />
-            <Button onClick={addPage} className={`${classes.navBarButton} ${classes.navBarButtonBlue}`}>
+            <Button
+              onClick={addPage}
+              className={`${classes.navBarButton} ${classes.navBarButtonBlue}`}
+            >
               Add New Page
             </Button>
           </Grid>
