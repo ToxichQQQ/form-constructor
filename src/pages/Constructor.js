@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { Area } from "./components/Area/Area";
-import { FormBuilder } from "./components/FormBuilder/FormBuilder";
+import React, { useState } from "react";
+import { Area } from "../components/Area/Area";
+import { FormBuilder } from "../components/FormBuilder/FormBuilder";
 import { Grid } from "@material-ui/core";
-import _ from "lodash";
 import { makeStyles } from "@material-ui/core/styles";
 import Snackbar from "@material-ui/core/Snackbar";
 import Alert from "@material-ui/lab/Alert";
+import {duplicatedValues} from "../untils/untils";
+import {useNavigate} from "react-router-dom";
 
 const useStyles = makeStyles(() => ({
   constructor: {
@@ -34,7 +35,6 @@ export function Constructor({ config, setConfig }) {
   const classes = useStyles();
 
   const [customizationMode, setCustomizationMode] = useState(false);
-  const [editTemplateMode, setEditTemplateMode] = useState(false);
   const [selectedItem, setSelectedItem] = useState("");
   const [initialItem, setInitialItem] = useState("");
   const [selectedSection, setSelectedSection] = useState("");
@@ -43,46 +43,25 @@ export function Constructor({ config, setConfig }) {
   const [modalMessage, setModalMessage] = useState(
     "Successfully updated the account!"
   );
+  const navigation = useNavigate()
 
-  const handleEditTemplate = async (templateTitle) => {};
-
-  const handleCreateNewTemplate = async (templateTitle) => {};
-
-  const duplicatedValues = () => {
-    let allFields = [];
-
-    config.map((page) =>
-      page.sections.map((section) =>
-        section.fields.map((field) => allFields.push(field.config.fieldName))
-      )
-    );
-
-    const duplicates = _.filter(allFields, (value, index, iteratee) =>
-      _.includes(iteratee, value, index + 1)
-    );
-    return duplicates;
-  };
-
-  const handleChangeTemplateList = (templateTitle) => {
-    const duplicates = duplicatedValues();
+  const handleChangeTemplateList = () => {
+    const duplicates = duplicatedValues(config);
     if (duplicates.length > 0) {
       setResponseSuccess(false);
       setModalMessage(`You have fields with duplicate names!`);
       setOpenModal(true);
       return false;
     }
-    if (editTemplateMode) {
-      handleEditTemplate(templateTitle);
-    } else {
-      handleCreateNewTemplate(templateTitle);
-    }
 
     setCustomizationMode(false);
     setOpenModal(true);
-    setEditTemplateMode(false);
   };
 
-  const deleteCreatedTemplate = () => {};
+  const deleteCreatedTemplate = () => {
+    setConfig([{}])
+    navigation('/')
+  };
 
   const selectNewTemplate = (templateConfig) => {
     setConfig(templateConfig);

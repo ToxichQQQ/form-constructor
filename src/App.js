@@ -1,4 +1,4 @@
-import { Constructor } from "./Constructor";
+import { Constructor } from "./pages/Constructor";
 import { Route, Routes } from "react-router-dom";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";

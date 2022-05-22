@@ -5,18 +5,18 @@ Enjoy your use!
 
 # Pages 
 
-- ###Main Page
+### Main Page
 
 ![Image](./src/images/git_images/img1.png)
-- ###Select Template
+### Select Template
 On this page you can choose from ready-made templates for creating a form (Complex, Standard, Simple).
 
 ![Image](./src/images/git_images/img2.png)
-- ###Questionnaire
+### Questionnaire
 Before creating a form, you can add a questionnaire and build your own form from the results of the answers.
 
 ![Image](./src/images/git_images/img4.png)
-- ###Constructor
+ ### Constructor
 In the constructor, you create your form by dragging elements on the page.
 
 ![Image](./src/images/git_images/img3.png)
