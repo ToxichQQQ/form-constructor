@@ -26,6 +26,7 @@ In the constructor, you create your form by dragging elements on the page.
 
 - React
 - React-Router
+- Material UI
 - react dnd
 - lodash
 
